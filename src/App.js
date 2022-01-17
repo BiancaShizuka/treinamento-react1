@@ -1,22 +1,44 @@
 import './App.css';
-import ContadorDeCliques from './ContadorDeCliques';
 import React,{useState} from 'react'
+import {ThemeProvider,createTheme} from '@mui/material/styles';
+import {Box, AppBar, Tabs, Tab} from '@mui/material';
+import Configuration from './Containers/Configuration';
+import ItemForm from './ItemForm';
+import ItemList from './ItemList';
+
+const theme = createTheme({
+  palette:{
+    primary:{
+      main:'#478BC9',
+    },
+    secondary:{
+      main:'#80F1D3'
+    },
+  }
+});
 function App() {
-  const [quantidade,setQuantidade]=useState(0);
+  const [selectedTab,selectTab]=useState(0);
+
+  function handleTabSelection(event,newValue){
+    selectTab(newValue)
+  }
+
   return (
-    <div className="App">
-      <ContadorDeCliques
-        textoDescritivo="Quantidade de cliques acima"
-        textoBotao="Botão superior"
-        setQuantidade={setQuantidade}
-        quantidade={quantidade}
-      />
-      <ContadorDeCliques
-        textoDescritivo="Quantidade de cliques abaixo"
-        textoBotao="Botão inferiror"
-        setQuantidade={setQuantidade}
-        quantidade={quantidade}
-      />
+    <div className="app">
+      <ThemeProvider theme={theme}>
+        <AppBar position="static">
+          <Tabs value={selectedTab} onChange={handleTabSelection}>
+            <Tab label="Configuracao"/>
+            <Tab label="Novo Item"/>
+            <Tab label="Itens"/>
+          </Tabs>
+        </AppBar>
+        <Box p={3}>
+          {selectedTab == 0? <Configuration/> : null}
+          {selectedTab == 1? <ItemForm/>: null}
+          {selectedTab == 2? <ItemList/> : null}
+        </Box>
+      </ThemeProvider>
     </div>
   );
 }
