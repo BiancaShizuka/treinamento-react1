@@ -26,11 +26,11 @@ function ItemForm(props){
         <Form onSubmit={onSubmit} validate={validate}>
             {formProps => (<form onSubmit={formProps.handleSubmit}>
                 <Grid container spacing={3}>
-                    <Grid item xs={12} >
-                        <Field name="codigo" label="Codigo" component={Textfield} fullWidth />
+                    <Grid item xs={12} sm={2}>
+                        <Field name="codigo" label="Codigo" component={Textfield} />
                     </Grid>
-                    <Grid  item xs={12}>
-                        <Field name="descricao" label="Descricao" component={Textfield} fullWidth/>
+                    <Grid  item xs={12} sm={10}>
+                        <Field name="descricao" label="Descricao" component={Textfield} />
                     </Grid>
                     <Grid item>
                         <FormControl>
