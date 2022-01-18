@@ -2,18 +2,21 @@ import React,{useState} from 'react'
 
 import {ThemeProvider,createTheme} from '@mui/material/styles';
 import {Button,TextField,FormControlLabel,Switch,Grid,FormControl, Typography} from '@mui/material';
+import { Field, Form } from 'react-final-form';
 
 function Configuration(){
-    const [usuario,setUsuario]=useState('');
-    const [email,setEmail]=useState('');
-    const [receberNotificacoes,setReceberNotificacoes]=useState('');
+    const [formState,setFormState]=useState({usuario:"",email:"",receberNotificacoes:""})
+    const setUsuario = value => setFormState(formState => ({...formState, usuario:value}));
+    const setEmail = value => setFormState(formState => ({...formState, email:value}));
+    const setReceberNotificacoes = value => setFormState(formState => ({...formState,receberNotificacoes: value}));
+
     return (
         <Grid container spacing={3}>
           <Grid item xs={12}>
             <TextField
               fullWidth
               label="Usuário"
-              value={usuario}
+              value={formState.usuario}
               onChange={ev => setUsuario(ev.target.value)}/>
           </Grid>
           
@@ -21,14 +24,14 @@ function Configuration(){
               <TextField
                 fullWidth
                 label="E-mail"
-                value={email}
+                value={formState.email}
                 onChange={ev => setEmail(ev.target.value)}/>
           </Grid>
           
           <Grid item xs={12} sm={2}>
             <FormControlLabel
               control={<Switch
-                checked={receberNotificacoes}
+                checked={formState.receberNotificacoes}
                 onChange={ev =>setReceberNotificacoes(ev.target.checked)}
               />}
               label="Receber Notificações"/>
@@ -40,10 +43,10 @@ function Configuration(){
               </FormControl>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="subtitle1">Usuário: {usuario}</Typography>
+            <Typography variant="subtitle1">Usuário: {formState.usuario}</Typography>
           </Grid>
           <Grid item xs={12}>
-            <Typography variant="subtitle1">Email: {email} ({receberNotificacoes ? "Receber notificações" :
+            <Typography variant="subtitle1">Email: {formState.email} ({formState.receberNotificacoes ? "Receber notificações" :
             "Não receber notificações"})</Typography>
           </Grid>
         </Grid>
