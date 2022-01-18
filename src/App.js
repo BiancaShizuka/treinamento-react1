@@ -3,8 +3,8 @@ import React,{useState} from 'react'
 import {ThemeProvider,createTheme} from '@mui/material/styles';
 import {Box, AppBar, Tabs, Tab} from '@mui/material';
 import Configuration from './Containers/Configuration';
-import ItemForm from './ItemForm';
-import ItemList from './ItemList';
+import ItemForm from './Containers/ItemForm';
+import ItemList from './Containers/ItemList';
 
 const theme = createTheme({
   palette:{
