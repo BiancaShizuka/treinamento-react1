@@ -18,7 +18,6 @@ function ItemForm(props){
     const onSubmit = formValues => {
         props.itens.push({id: props.id,codigo: formValues.codigo,descricao: formValues.descricao})
         props.setId(props.id+1);
-        console.log(props.itens);
         alert(`${formValues.codigo} ${formValues.descricao}`);
     }
 

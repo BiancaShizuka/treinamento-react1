@@ -6,13 +6,6 @@ import { Field, Form } from 'react-final-form';
 import Textfield from '../TextField';
 import FormSwitch from '../Switch';
 function Configuration(){
-    /*
-    const [formState,setFormState]=useState({usuario:"",email:"",receberNotificacoes:""})
-    const setUsuario = value => setFormState(formState => ({...formState, usuario:value}));
-    const setEmail = value => setFormState(formState => ({...formState, email:value}));
-    const setReceberNotificacoes = value => setFormState(formState => ({...formState,receberNotificacoes: value}));
-    */
-    const [receberNotificacoes,setReceberNotificacoes]=useState(false);
     const validate = formValues =>{
         const error={}
         if(!formValues.usuario){
@@ -47,15 +40,6 @@ function Configuration(){
                 <Button type="submit" variant="contained" color="primary">Salvar</Button>
                 </FormControl>
             </Grid>
-            {/*
-            <Grid item xs={12}>
-              <Typography variant="subtitle1">Usuário: {formState.usuario}</Typography>
-            </Grid>
-            <Grid item xs={12}>
-              <Typography variant="subtitle1">Email: {formState.email} ({formState.receberNotificacoes ? "Receber notificações" :
-              "Não receber notificações"})</Typography>
-            </Grid>
-            */}
           </Grid>
         </form>)}
       </Form>
