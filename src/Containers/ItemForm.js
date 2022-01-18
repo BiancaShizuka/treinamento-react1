@@ -6,16 +6,9 @@ function ItemForm(props){
     const [descricao,setDescricao]=useState('');
 
     function adicionarItem(){
-        
-        let id=0;
-        if(props.itens.length==0){
-            id=0;
-        }else{
-            let length=props.itens.length;
-            id=props.itens[length-1].id+1;
-        }
-        props.itens.push({id: id,codigo:codigo,descricao:descricao})
-        
+        props.itens.push({id: props.id,codigo:codigo,descricao:descricao})
+        props.setId(props.id+1);
+        console.log(props.itens);
         setCodigo('');
         setDescricao('');
     }

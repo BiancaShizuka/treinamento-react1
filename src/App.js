@@ -19,7 +19,7 @@ const theme = createTheme({
 function App() {
   const [selectedTab,selectTab]=useState(0);
   const [itens,setItens]=useState([]);
-
+  const [id,setId]=useState(0);
 
   function handleTabSelection(event,newValue){
     selectTab(newValue)
@@ -37,7 +37,7 @@ function App() {
         </AppBar>
         <Box p={3}>
           {selectedTab == 0? <Configuration/> : null}
-          {selectedTab == 1? <ItemForm itens={itens} setItens={setItens}/>: null}
+          {selectedTab == 1? <ItemForm itens={itens} setItens={setItens} id={id} setId={setId}/>: null}
           {selectedTab == 2? <ItemList itens={itens}/> : null}
         </Box>
       </ThemeProvider>
