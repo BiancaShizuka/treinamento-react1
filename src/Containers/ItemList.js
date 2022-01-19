@@ -1,7 +1,15 @@
 import { Table, TableBody, TableCell, TableContainer, TableHead, TableRow } from '@mui/material';
-import React from 'react'
+import React,{useState,useEffect} from 'react'
+import api from '../Services/api';
 
 function ItemList(props){
+    const [itens,setItens] =useState([])
+
+    useEffect(()=>{
+        api.getItens()
+            .then(itens => setItens(itens));
+    },[])
+
     return (
         <TableContainer>
             <Table>
@@ -16,10 +24,13 @@ function ItemList(props){
                         <TableCell align="center">
                             Descrição
                         </TableCell>
+                        <TableCell align="center">
+                            Status
+                        </TableCell>
                     </TableRow>
                 </TableHead>
                 <TableBody>
-                    {props.itens.map(item =>(
+                    {itens.map(item =>(
                         <TableRow key={item.id}>
                             <TableCell align="center">
                                 {item.id}
@@ -29,6 +40,9 @@ function ItemList(props){
                             </TableCell>
                             <TableCell align="center">
                                 {item.descricao}
+                            </TableCell>
+                            <TableCell align="center">
+                                {item.ativo? "Ativo": "Não Ativo"}
                             </TableCell>
                         </TableRow>
                     ))}
